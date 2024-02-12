@@ -1,0 +1,72 @@
+Bien sûr, voici une rédaction du contenu d'un document décrivant les fonctionnalités que nous avons développées :
+
+---
+
+# Document des Fonctionnalités
+
+## Introduction
+
+Ce document présente les différentes fonctionnalités implémentées dans le cadre du développement d'une application. Ces fonctionnalités ont été conçues pour répondre aux besoins spécifiques de l'application et offrir une expérience utilisateur enrichissante. Chaque section décrit en détail les caractéristiques clés, les objectifs et les aspects techniques des fonctionnalités mises en œuvre.
+
+## 1. Calendrier d'Événements
+
+### Objectif
+
+Le calendrier d'événements offre aux utilisateurs une vue claire et interactive des événements planifiés. Il permet de filtrer les événements par catégorie, lieu et mois, offrant ainsi une navigation personnalisée.
+
+### Fonctionnalités Principales
+
+- Affichage mensuel avec navigation intuitive.
+- Filtrage par catégorie pour une meilleure organisation.
+- Sélection du lieu pour une visualisation ciblée des événements.
+
+## 2. Gestion des Événements
+
+### Objectif
+
+La gestion des événements permet aux utilisateurs de créer, modifier et supprimer leurs événements. Cette fonctionnalité offre une interface conviviale pour gérer efficacement les détails des événements.
+
+### Fonctionnalités Principales
+
+- Création d'événements avec informations détaillées.
+- Modification des détails d'un événement existant.
+- Suppression d'événements inutiles.
+
+## 3. Filtrage par Catégorie et Lieu
+
+### Objectif
+
+Le filtrage par catégorie et lieu améliore la recherche d'événements en permettant aux utilisateurs de sélectionner des critères spécifiques, facilitant ainsi la découverte d'événements pertinents.
+
+### Fonctionnalités Principales
+
+- Liste déroulante de catégories pour une sélection facile.
+- Sélection du lieu pour afficher les événements spécifiques.
+
+## 4. Sécurité et Gestion des Utilisateurs
+
+### Objectif
+
+La sécurité et la gestion des utilisateurs assurent une expérience d'utilisation sécurisée et personnalisée. Les utilisateurs peuvent s'inscrire, se connecter et gérer leur profil.
+
+### Fonctionnalités Principales
+
+-Système d'authentification sécurisé avec utilisation des CDN de Bootstrap et jQuery pour une interface moderne et conviviale.
+-Inscription et gestion de profil utilisateur.
+-Contrôle d'accès basé sur les rôles pour la sécurité.
+-Intégration d'un super administrateur capable d'attribuer des rôles aux utilisateurs.
+-Mise en œuvre Technique
+-L'interface utilisateur repose sur les bibliothèques externes Bootstrap et jQuery, facilitant le développement d'une interface esthétique et réactive.
+
+Le système de gestion des utilisateurs utilise des méthodes avancées d'authentification, garantissant la sécurité des informations sensibles.
+
+La gestion des rôles est mise en œuvre de manière à permettre à un super administrateur d'attribuer des rôles spécifiques à chaque utilisateur. Cela offre une flexibilité accrue dans la gestion des autorisations et des responsabilités au sein de l'application.
+
+Cette approche permet de créer une expérience utilisateur moderne, sécurisée et personnalisée, tout en offrant des fonctionnalités avancées de gestion des utilisateurs.
+## Conclusion
+
+Ce document met en lumière les principales fonctionnalités de l'application, offrant aux utilisateurs une expérience complète et engageante. Chaque fonctionnalité a été développée en tenant compte des besoins spécifiques des utilisateurs et des objectifs de l'application.
+
+--- 
+
+N'oubliez pas d'ajuster le contenu en fonction des détails spécifiques de votre application.

@@ -1,0 +1,41 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block name_rubric %}Catégories{% endblock %}
+
+{% block content %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Picture</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                    {% if category.picture is not null %}
+                        <img src="data:image/png;base64,{{ category.picture }}" width=50 height=50 alt="Image">
+                    {% else %}
+                        Image non disponible
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('app_category_show', {'id': category.id}) }}" class="btn btn-info btn-sm">Show</a>
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">Pas de catégorie disponible</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_category_new') }}">Créer une catégorie</a>
+{% endblock %}

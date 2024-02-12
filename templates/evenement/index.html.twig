@@ -1,0 +1,50 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Admin - Listes des évènements{% endblock %}
+
+{% block name_rubric %} Listes des évènements {% endblock %}
+
+{% block content %}
+        <table class="table table-striped">
+    <thead class="thead">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Lieu</th>
+            <th scope="col">Date début</th>
+            <th scope="col">Date fin</th>
+            <th scope="col">Picture</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.id }}</td>
+                <td>{{ evenement.name }}</td>     
+                <td>{{ evenement.lieu }}</td>
+                <td>{{ evenement.dateDeb ? evenement.dateDeb|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ evenement.dateFin ? evenement.dateFin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    {% if evenement.picture is not null %}
+                        <img src="data:image/png;base64,{{ evenement.picture }}" width=50 height=50 alt="Image">
+                    {% else %}
+                        Image non disponible
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}" class="btn btn-info btn-sm">Show</a>
+                    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Pas d'évènement disponible</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ path('app_evenement_new') }}" class="btn btn-primary">Créer un évènement</a>
+
+{% endblock %}

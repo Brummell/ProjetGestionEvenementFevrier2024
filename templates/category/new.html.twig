@@ -1,0 +1,9 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block name_rubric %}Ajouter une catégorie{% endblock %}
+
+{% block content %}
+    {{ include('category/_form.html.twig') }}
+
+    <a href="{{ path('app_category_index') }}">Revenir à la liste</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block name_rubric %}
+    Tableau de bord
+{% endblock %}
+
+{% block content %}
+      <div>
+        <a href="{{path('app_evenement_index')}}" class="btn btn-primary btn-sm">Gérer les évenements</a>
+        <a href="{{path('app_category_index')}}" class="btn btn-primary btn-sm">Gérer les categories</a>
+        <a href="{{path('app_comments_index')}}" class="btn btn-primary btn-sm">Gérer les commentaires</a>
+        <a href="{{path('app_user_index')}}" class="btn btn-primary btn-sm">Gérer les utilisateurs</a>
+      </div>
+{% endblock %}

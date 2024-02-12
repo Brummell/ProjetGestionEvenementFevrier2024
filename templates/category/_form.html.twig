@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="container bg-primary card-body">
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-light text-dark mt-2">{{ button_label|default('Sauvegarder') }}</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

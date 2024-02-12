@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Evenements Universitaires - Accueil</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.svg" />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Web Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <!-- ========================= CSS here ========================= -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/LineIcons.2.0.css" />
+    <link rel="stylesheet" href="assets/css/animate.css" />
+    <link rel="stylesheet" href="assets/css/tiny-slider.css" />
+    <link rel="stylesheet" href="assets/css/glightbox.min.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        *{
+            font-family: cursive;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+      <p class="browserupgrade">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="https://browsehappy.com/">upgrade your browser</a> to improve
+        your experience and security.
+      </p>
+    <![endif]-->
+
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- /End Preloader -->
+
+    <!-- Start Header Area -->
+    <header class="header navbar-area">
+        <div class="content p-3">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="nav-inner">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="{{path('app_home')}}">
+                                <h5 class="text-uppercase text-wrap" style="color:#00f;font-family: cursive;">Évènements</h5>
+                            </a>
+                            <button class="navbar-toggler mobile-menu-btn" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a class="{{ app.request.attributes.get('_route') == 'app_home' ? 'active' : '' }} dd-menu collapsed" href="{{path('app_home')}}"
+                                            
+                                            aria-label="Toggle navigation">Accueil</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" aria-label="Toggle navigation"></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="{{ app.request.attributes.get('_route') == 'toutes_les_evenements' ? 'active' : '' }} dd-menu collapsed" href="{{path('toutes_les_evenements')}}"
+                                            
+                                            aria-label="Toggle navigation">Les évènements</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="{{ app.request.attributes.get('_route') == 'app_mesParticipations' ? 'active' : '' }} dd-menu collapsed" href="{{path('app_mesParticipations')}}"
+                                            
+                                            aria-label="Toggle navigation">participations</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class=" dd-menu collapsed" href="javascript:void(0)"
+                                            data-bs-toggle="collapse" data-bs-target="#submenu-1-5"
+                                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                                            aria-label="Toggle navigation">profil</a>
+                                    </li>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                            <div class="login-button">
+                                <ul>
+                                    {% if app.user %}
+                                        {# L'utilisateur est connecté #}
+                                        <li>
+                                            <a href="{{ path('app_logout') }}"><i class="lni lni-exit"></i> Se déconnecter</a>
+                                        </li>
+                                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                            <li>
+                                                <a href="{{ path('app_admin') }}"><i class="lni lni-exit"></i>Admin</a>
+                                            </li>
+                                        {% elseif is_granted('ROLE_ADMIN') %}
+                                            <li>
+                                                <a href="{{ path('app_admin') }}"><i class="lni lni-exit"></i>Admin</a>
+                                            </li>
+                                        {% else %}
+
+                                        {% endif %}
+                                    {% else %}
+                                        {# L'utilisateur n'est pas connecté #}
+                                        <li>
+                                            <a href="{{ path('app_login') }}"><i class="lni lni-enter"></i> Se connecter</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('app_register') }}"><i class="lni lni-user"></i> S'enregistrer</a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            {% if app.user %}
+                                {% set username = app.user.email|split('@')|first %}
+                                <div class="button header-button">
+                                    <a href="javascript:void(0)" class="btn">
+                                        Bonjour {{ username|upper }}
+                                    </a>
+                                </div>    
+                                {% else %} 
+                            {% endif %}
+                            
+                        </nav> <!-- navbar -->
+                    </div>
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </header>
+    <!-- End Header Area -->
+
+    <!-- Start Hero Area -->
+    <section class="hero-area overlay">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
+                    <div class="hero-text text-center">
+                        <!-- Start Hero Text -->
+                        <div class="section-heading">
+                            <h2 class="wow fadeInUp" data-wow-delay=".3s">Bienvenue sur la page des évèvenements de votre université</h2>
+                            <p class="wow fadeInUp" data-wow-delay=".5s">Participez aux évènements de votre université</p>
+                        </div>
+                        <!-- End Search Form -->
+                        <!-- Start Search Form -->
+                        
+                        <div class="justify-content-center mt-3">
+                            <a href="{{path('calendar')}}" class="btn btn-primary">Vérifier votre calendrier d'évènements</a>
+                        </div>
+                        <!-- End Search Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Hero Area -->
+
+    
+    <!-- /End Categories Area -->
+
+    <!-- Start Items Grid Area -->
+    <section class="items-grid section custom-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Catégories d'évènements</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">Voici les catégories d'évenement organiser dans votre université.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="single-head">
+                <div class="row">
+                    {% for category in categories %}
+                        <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Start Single Grid -->
+                        <div class="single-grid wow fadeInUp" data-wow-delay=".2s">
+                            <div class="image">
+                                <a href="item-details.html" class="thumbnail"><img src="data:image/png;base64,{{category.picture}}" width="356" height="356" alt="#"></a>
+                            </div>
+                            <div class="content">
+                                <div class="top-content">
+                                    <h3 class="title">
+                                        <a href="item-details.html">{{category.name}}</a>
+                                    </h3>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Grid -->
+                    </div>
+                    {% endfor %}
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /End Items Grid Area -->
+
+    <!-- Start Why Choose Area -->
+    
+    <!-- /End Why Choose Area -->
+
+    <!-- Start Call Action Area -->
+    <section class="call-action overlay section">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-8 offset-lg-2 col-12">
+                    <div class="inner">
+                        <div class="content">
+                            <h2 class="wow fadeInUp" data-wow-delay=".4s">Voir toutes les évènements <br></h2>
+                            <div class="button wow fadeInUp" data-wow-delay=".8s">
+                                <a href="{{path('toutes_les_evenements')}}" class="btn">Voir plus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Call Action Area -->
+
+    <!-- Start Pricing Table Area -->
+    
+    <!-- End How Works Area -->
+
+    <!-- Start Newsletter Area -->
+    <div class="newsletter section">
+        <div class="container">
+            <div class="inner-content">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="title">
+                            <i class="lni lni-alarm"></i>
+                            <h2>Newsletter</h2>
+                            <p>We don't send spam so don't worry.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="form">
+                            <form action="#" method="get" target="_blank" class="newsletter-form">
+                                <input name="EMAIL" placeholder="Your email address" type="email">
+                                <div class="button">
+                                    <button class="btn">Subscribe<span class="dir-part"></span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Newsletter Area -->
+
+    <!-- Start Footer Area -->
+    <footer class="footer">
+        <!-- Start Footer Top -->
+        
+        <!--/ End Footer Middle -->
+        <!-- Start Footer Bottom -->
+        <div class="text-center">
+        Developped by GNANGNON PRINCE BRUMMELL
+        </div>
+        
+        <!-- End Footer Middle -->
+    </footer>
+    <!--/ End Footer Area -->
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top btn-hover">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+
+    <!-- ========================= JS here ========================= -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        //========= Category Slider 
+        tns({
+            container: '.category-slider',
+            items: 3,
+            slideBy: 'page',
+            autoplay: false,
+            mouseDrag: true,
+            gutter: 0,
+            nav: false,
+            controls: true,
+            controlsText: ['<i class="lni lni-chevron-left"></i>', '<i class="lni lni-chevron-right"></i>'],
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                540: {
+                    items: 2,
+                },
+                768: {
+                    items: 4,
+                },
+                992: {
+                    items: 5,
+                },
+                1170: {
+                    items: 6,
+                }
+            }
+        });
+        // Exemple en utilisant JavaScript avec jQuery
+
+        var userInactiveTime = 0;
+
+        // Réinitialise le compteur d'inactivité lorsqu'une action est détectée
+        $(document).on('mousemove keydown', function() {
+            userInactiveTime = 0;
+        });
+
+        // Vérifie périodiquement le compteur d'inactivité et déclenche la déconnexion si nécessaire
+        setInterval(function() {
+            userInactiveTime += 1;
+
+            // Configurez la durée d'inactivité maximale (en secondes)
+            var maxInactiveTime = 300; // 30 minutes
+
+            if (userInactiveTime > maxInactiveTime) {
+                // Redirigez l'utilisateur vers la page de déconnexion ou effectuez une action de déconnexion
+                window.location.href = '/logout';
+            }
+        }, 1000); // Vérifie toutes les secondes
+
+    </script>
+</body>
+
+</html>

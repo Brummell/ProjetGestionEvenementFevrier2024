@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{asset('./img/svg/logo.svg')}}" type="image/x-icon">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="{{asset('./css/style.min.css')}}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="layer"></div>
+<!-- ! Body -->
+<a class="skip-link sr-only" href="#skip-target">Skip to content</a>
+<div class="page-flex">
+  <!-- ! Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-start">
+        <div class="sidebar-head">
+            <a href="{{path('app_admin')}}" class="logo-wrapper" title="Home">
+                <span class="sr-only">Home</span>
+                <div class="logo-text">
+                    <span class="logo-title text-uppercase">Admin</span>
+                    <span class="logo-subtitle">tableau de bord</span>
+                </div>
+
+            </a>
+            <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+                <span class="sr-only">Toggle menu</span>
+                <span class="icon menu-toggle" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="sidebar-body">
+            <ul class="sidebar-body-menu">
+                
+                <li>
+                    <a class="show-cat-btn {{ app.request.attributes.get('_route') == 'app_evenement_index' or app.request.attributes.get('_route') == 'app_evenement_new' ? 'active' : '' }}" href="#">
+                        <span class="icon document" aria-hidden="true"></span>Évènements
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{{path('app_evenement_index')}}">les évènements</a>
+                        </li>
+                        <li>
+                            <a href="{{path('app_evenement_new')}}">Ajouter un évènement</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn {{ app.request.attributes.get('_route') == 'app_category_index' or app.request.attributes.get('_route') == 'app_category_new' ? 'active' : '' }}" href="#">
+                        <span class="icon folder" aria-hidden="true"></span>Catégories
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{{path('app_category_index')}}">les categories</a>
+                        </li>
+                        <li>
+                            <a href="{{path('app_category_new')}}">Ajouter un catégorie</a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a class="show-cat-btn {{ app.request.attributes.get('_route') == 'app_comments_index' ? 'active' : '' }}" href="#">
+                        <span class="icon folder" aria-hidden="true"></span>Commentaires
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="{{path('app_comments_index')}}">les commentaires</a>
+                        </li>
+                    </ul>
+                </li>
+                {% if  is_granted('ROLE_SUPER_ADMIN') %}
+                    <li>
+                        <a class="show-cat-btn {{ app.request.attributes.get('_route') == 'app_user_index' ? 'active' : '' }}" href="#">
+                            <span class="icon folder" aria-hidden="true"></span>Utilisateurs
+                            <span class="category__btn transparent-btn" title="Open list">
+                                <span class="sr-only">Open list</span>
+                                <span class="icon arrow-down" aria-hidden="true"></span>
+                            </span>
+                        </a>
+                        <ul class="cat-sub-menu">
+                            <li>
+                                <a href="{{path('app_user_index')}}">les utilisateurs</a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+                
+                
+            </ul>
+
+        </div>
+    </div>
+    
+</aside>
+  <div class="main-wrapper">
+    <!-- ! Main nav -->
+<nav class="navbar navbar-light ">
+    <div class="main-nav-start">
+      
+    </div>
+    <div class="main-nav-end">
+        <div>
+            {% if app.user %}
+                {% set username = app.user.email|split('@')|first %}
+                    
+                Bonjour {{ username|upper }}
+                                
+            {% endif %}
+        </div>
+        <a href="{{path('app_logout')}}" class="btn btn-primary btn-sm text-light">Se déconnecter</a>
+        <a href="{{path('app_home')}}" class="btn btn-primary btn-sm">Revenir à la page d'accueil</a>
+    </div>
+</nav>
+    <!-- ! Main -->
+    <main class="main users chart-page" id="skip-target">
+      <div class="container">
+        <h2 class="main-title">{% block name_rubric %} {% endblock %}</h2>
+        {% block content %} {% endblock %}
+      </div>
+    </main>
+    <!-- ! Footer -->
+    <footer class="footer">
+  <div class="container footer--flex">
+    <div class="footer-start">
+      <p>2024 © Admin - <a href="https://tksymfony.alwaysdata.net/" target="_blank"
+          rel="noopener noreferrer">GNANGNON Prince Brummell le Dev Hardcore</a></p>
+    </div>
+  </div>
+</footer>
+  </div>
+</div>
+<!-- Chart library -->
+<script src="{{asset('./plugins/chart.min.js')}}"></script>
+<!-- Icons library -->
+<script src="{{asset('plugins/feather.min.js')}}"></script>
+<!-- Custom scripts -->
+<script src="{{asset('js/script.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script>
+    var userInactiveTime = 0;
+
+        // Réinitialise le compteur d'inactivité lorsqu'une action est détectée
+        $(document).on('mousemove keydown', function() {
+            userInactiveTime = 0;
+        });
+
+        // Vérifie périodiquement le compteur d'inactivité et déclenche la déconnexion si nécessaire
+        setInterval(function() {
+            userInactiveTime += 1;
+
+            // Configurez la durée d'inactivité maximale (en secondes)
+            var maxInactiveTime = 1800; // 30 minutes
+
+            if (userInactiveTime > maxInactiveTime) {
+                // Redirigez l'utilisateur vers la page de déconnexion ou effectuez une action de déconnexion
+                window.location.href = '/logout';
+            }
+        }, 1000); // Vérifie toutes les secondes
+</script>
+</body>
+
+</html>
